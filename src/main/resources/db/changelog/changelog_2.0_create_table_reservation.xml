@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="2" author="wajih">
+        <createTable tableName="reservation">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1" startWith="1">
+                <constraints primaryKey="true" primaryKeyName="reservation_id_pk"/>
+            </column>
+            <column name="careAndSupport" type="varchar(100)"/>
+            <column name="discount" type="varchar(100)"/>
+            <column name="intakeOf" type="date"/>
+            <column name="socketTo" type="date"/>
+            <column name="restitutionOf" type="date"/>
+            <column name="restitutionTo" type="date"/>
+            <column name="status" type="varchar(100)"/>
+            <column name="dateReservation" type="date"/>
+
+            <column name="car_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

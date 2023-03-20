@@ -1,0 +1,671 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "location-car",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/cars": {
+      "summary": "Path used to manage the list of cars.",
+      "description": "The REST endpoint/path used to list and create zero or more `Car` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get": {
+        "tags": [
+            "cars"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CarDto"
+                  }
+                }
+              }
+            },
+            "description": "Successful response - returns an array of `Car` entities."
+          }
+        },
+        "operationId": "getCars",
+        "summary": "List All Cars",
+        "description": "Gets a list of all `Car` entities."
+      },
+      "post": {
+        "requestBody": {
+          "description": "A new `Car` to be created.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CarDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+            "cars"
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarDto"
+                }
+              }
+            },
+            "description": "Successful response."
+          }
+        },
+        "operationId": "createCar",
+        "summary": "Create a Car",
+        "description": "Creates a new instance of a `Car`."
+      }
+    },
+    "/cars/{id}": {
+      "summary": "Path used to manage a single Car.",
+      "description": "The REST endpoint/path used to get, update, and delete single instances of an `Car`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get": {
+        "tags": [
+            "cars"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Car`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarDto"
+                }
+              }
+            },
+            "description": "Successful response - returns a single `Car`."
+          }
+        },
+        "operationId": "getCarById",
+        "summary": "Get a Car",
+        "description": "Gets the details of a single instance of a `Car`."
+      },
+      "put": {
+        "requestBody": {
+          "description": "Updated `Car` information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CarDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+            "cars"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Car`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "updateCarById",
+        "summary": "Update a Car",
+        "description": "Updates an existing `Car`."
+      },
+      "delete": {
+        "tags": [
+            "cars"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Car`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarDto"
+                }
+              }
+            },
+            "description": "Successful response."
+          }
+        },
+        "operationId": "deleteCarById",
+        "summary": "Delete a Car",
+        "description": "Deletes an existing `Car`."
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "description": "A unique identifier for a `Car`.",
+          "schema": {
+            "type": "string"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/customers": {
+      "summary": "Path used to manage the list of customers.",
+      "description": "The REST endpoint/path used to list and create zero or more `Customer` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get": {
+        "tags": [
+            "customers"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerDto"
+                  }
+                }
+              }
+            },
+            "description": "Successful response - returns an array of `Customer` entities."
+          }
+        },
+        "operationId": "getCustomers",
+        "summary": "List All Customers",
+        "description": "Gets a list of all `Customer` entities."
+      },
+      "post": {
+        "requestBody": {
+          "description": "A new `Customer` to be created.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+            "customers"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "createCustomer",
+        "summary": "Create a Customer",
+        "description": "Creates a new instance of a `Customer`."
+      }
+    },
+    "/customers/{id}": {
+      "summary": "Path used to manage a single Customer.",
+      "description": "The REST endpoint/path used to get, update, and delete single instances of an `Customer`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get": {
+        "tags": [
+            "customers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Customer`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerDto"
+                }
+              }
+            },
+            "description": "Successful response - returns a single `Customer`."
+          }
+        },
+        "operationId": "getCustomerById",
+        "summary": "Get a Customer",
+        "description": "Gets the details of a single instance of a `Customer`."
+      },
+      "put": {
+        "requestBody": {
+          "description": "Updated `Customer` information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+            "customers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Customer`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "updateCustomerById",
+        "summary": "Update a Customer",
+        "description": "Updates an existing `Customer`."
+      },
+      "delete": {
+        "tags": [
+            "customers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Customer`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "deleteCustomerById",
+        "summary": "Delete a Customer",
+        "description": "Deletes an existing `Customer`."
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "description": "A unique identifier for a `Customer`.",
+          "schema": {
+            "type": "string"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/reservations": {
+      "summary": "Path used to manage the list of reservations.",
+      "description": "The REST endpoint/path used to list and create zero or more `Reservation` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get": {
+        "tags": [
+            "reservations"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReservationDto"
+                  }
+                }
+              }
+            },
+            "description": "Successful response - returns an array of `Reservation` entities."
+          }
+        },
+        "operationId": "getReservations",
+        "summary": "List All Reservations",
+        "description": "Gets a list of all `Reservation` entities."
+      },
+      "post": {
+        "requestBody": {
+          "description": "A new `Reservation` to be created.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+            "reservations"
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              }
+            },
+            "description": "Successful response."
+          }
+        },
+        "operationId": "createReservation",
+        "summary": "Create a Reservation",
+        "description": "Creates a new instance of a `Reservation`."
+      }
+    },
+    "/reservations/{id}": {
+      "summary": "Path used to manage a single Reservation.",
+      "description": "The REST endpoint/path used to get, update, and delete single instances of an `Reservation`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get": {
+        "tags": [
+            "reservations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Reservation`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationDto"
+                }
+              }
+            },
+            "description": "Successful response - returns a single `Reservation`."
+          }
+        },
+        "operationId": "getReservationById",
+        "summary": "Get a Reservation",
+        "description": "Gets the details of a single instance of a `Reservation`."
+      },
+      "put": {
+        "requestBody": {
+          "description": "Updated `Reservation` information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+            "reservations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Reservation`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "updateReservationById",
+        "summary": "Update a Reservation",
+        "description": "Updates an existing `Reservation`."
+      },
+      "delete": {
+        "tags": [
+            "reservations"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "A unique identifier for a `Reservation`.",
+            "schema": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful response."
+          }
+        },
+        "operationId": "deleteReservationById",
+        "summary": "Delete a Reservation",
+        "description": "Deletes an existing `Reservation`."
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "description": "A unique identifier for a `Reservation`.",
+          "schema": {
+            "type": "string"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "CarDto": {
+        "description": "",
+        "required": [
+            "idCar"
+        ],
+        "type": "object",
+        "properties": {
+          "idCar": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          },
+          "mark": {
+            "description": "",
+            "type": "string"
+          },
+          "reference": {
+            "description": "",
+            "type": "string"
+          },
+          "numberOfDoors": {
+            "description": "",
+            "type": "integer"
+          },
+          "numberOfPlace": {
+            "description": "",
+            "type": "integer"
+          },
+          "numberOfHorses": {
+            "description": "",
+            "type": "integer"
+          },
+          "gearbox": {
+            "description": "",
+            "type": "integer"
+          },
+          "price": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          },
+          "color": {
+            "description": "",
+            "type": "string"
+          },
+          "image": {
+            "description": "",
+            "type": "string"
+          },
+          "numberOfAvailableCars": {
+            "description": "",
+            "type": "integer"
+          },
+          "reservations": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReservationDto"
+            }
+          }
+        }
+      },
+      "CustomerDto": {
+        "description": "",
+        "required": [
+            "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          },
+          "name": {
+            "description": "",
+            "type": "string"
+          },
+          "email": {
+            "description": "",
+            "type": "string"
+          },
+          "password": {
+            "description": "",
+            "type": "string"
+          },
+          "privilege": {
+            "description": "",
+            "type": "string"
+          },
+          "reservations": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReservationDto"
+            }
+          }
+        }
+      },
+      "ReservationDto": {
+        "description": "",
+        "required": [
+            "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          },
+          "careAndSupport": {
+            "description": "",
+            "type": "string"
+          },
+          "discount": {
+            "description": "",
+            "type": "string"
+          },
+          "intakeOf": {
+            "format": "date",
+            "description": "",
+            "type": "string"
+          },
+          "socketTo": {
+            "format": "date",
+            "description": "",
+            "type": "string"
+          },
+          "restitutionOf": {
+            "format": "date",
+            "description": "",
+            "type": "string"
+          },
+          "restitutionTo": {
+            "format": "date",
+            "description": "",
+            "type": "string"
+          },
+          "status": {
+            "description": "",
+            "type": "string"
+          },
+          "dateReservation": {
+            "format": "date",
+            "description": "",
+            "type": "string"
+          },
+          "car_id": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          },
+          "customer_id": {
+            "format": "int64",
+            "description": "",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <include file="db/changelog/changelog_1.0_create_table_car.xml"/>
+    <include file="db/changelog/changelog_2.0_create_table_reservation.xml"/>
+    <include file="db/changelog/changelog_3.0_create_table_customer.xml"/>
+
+</databaseChangeLog>

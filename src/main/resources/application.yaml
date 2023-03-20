@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/location_car?createDatabaseIfNotExist=true&useSSL=false
+    password: ''
+  h2:
+    console:
+      enabled: 'true'
+  application:
+    name: location_car
+  liquibase:
+    enabled: 'true'
+    change-log: classpath:db/changelog/changelog-master.xml
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jpa:
+    hibernate:
+      ddl-auto: create
