@@ -92,6 +92,10 @@ paths:
           required: true
       responses:
         '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarDto'
           description: Successful response.
       operationId: updateCarById
       summary: Update a Car
@@ -110,10 +114,6 @@ paths:
           required: true
       responses:
         '204':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarDto'
           description: Successful response.
       operationId: deleteCarById
       summary: Delete a Car
@@ -158,6 +158,10 @@ paths:
         - customers
       responses:
         '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDto'
           description: Successful response.
       operationId: createCustomer
       summary: Create a Customer
@@ -211,6 +215,10 @@ paths:
           required: true
       responses:
         '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDto'
           description: Successful response.
       operationId: updateCustomerById
       summary: Update a Customer
@@ -330,6 +338,10 @@ paths:
           required: true
       responses:
         '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationDto'
           description: Successful response.
       operationId: updateReservationById
       summary: Update a Reservation

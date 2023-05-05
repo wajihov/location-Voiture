@@ -4,10 +4,8 @@ import fr.gopartner.locationvoiture.ReservationsApiDelegate;
 import fr.gopartner.locationvoiture.dto.ReservationDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.NativeWebRequest;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ReservationController implements ReservationsApiDelegate {
@@ -33,7 +31,7 @@ public class ReservationController implements ReservationsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Void> updateReservationById(Long id, ReservationDto reservationDto) {
+    public ResponseEntity<ReservationDto> updateReservationById(Long id, ReservationDto reservationDto) {
         return ReservationsApiDelegate.super.updateReservationById(id, reservationDto);
     }
 }

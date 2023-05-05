@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,5 +26,5 @@ public class Customer {
     private String privilege;
 
     @OneToMany(mappedBy = "customer")
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new ArrayList<>();
 }

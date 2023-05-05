@@ -30,8 +30,11 @@ public class Reservation {
     private LocalDate dateReservation;
 
     @ManyToOne
+    @JoinColumn(name = "car_id")
     private Car car;
+
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
 }
