@@ -3,6 +3,7 @@ package fr.gopartner.locationvoiture.domain.car;
 import fr.gopartner.locationvoiture.core.exception.CarReservationCustomerException;
 import fr.gopartner.locationvoiture.core.rest.Codes;
 import fr.gopartner.locationvoiture.core.utils.CollectionUtils;
+import fr.gopartner.locationvoiture.domain.reservation.ReservationMapper;
 import fr.gopartner.locationvoiture.dto.CarDto;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class CarMapper {
+
+    private final ReservationMapper reservationMapper;
+
+    public CarMapper(ReservationMapper reservationMapper) {
+        this.reservationMapper = reservationMapper;
+    }
 
     public Car toEntity(CarDto carDto) {
         if (carDto == null) {
@@ -47,6 +54,7 @@ public class CarMapper {
                 .color(car.getColor())
                 .image(car.getImage())
                 .numberOfAvailableCars(car.getNumberOfAvailableCars())
+                .reservations(reservationMapper.reservationDtoList(car.getReservations()))
                 .build();
     }
 

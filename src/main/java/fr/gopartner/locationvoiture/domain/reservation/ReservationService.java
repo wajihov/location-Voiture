@@ -3,7 +3,9 @@ package fr.gopartner.locationvoiture.domain.reservation;
 import fr.gopartner.locationvoiture.core.exception.CarReservationCustomerException;
 import fr.gopartner.locationvoiture.core.rest.Codes;
 import fr.gopartner.locationvoiture.domain.car.CarMapper;
+import fr.gopartner.locationvoiture.domain.car.CarService;
 import fr.gopartner.locationvoiture.domain.customer.CustomerMapper;
+import fr.gopartner.locationvoiture.domain.customer.CustomerService;
 import fr.gopartner.locationvoiture.dto.CarDto;
 import fr.gopartner.locationvoiture.dto.CustomerDto;
 import fr.gopartner.locationvoiture.dto.ReservationDto;
@@ -22,15 +24,24 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final CustomerMapper customerMapper;
     private final CarMapper carMapper;
+    private final CarService carService;
+    private final CustomerService customerService;
 
-    public ReservationService(ReservationMapper reservationMapper, ReservationRepository reservationRepository, CustomerMapper customerMapper, CarMapper carMapper) {
+    public ReservationService(ReservationMapper reservationMapper, ReservationRepository reservationRepository, CustomerMapper customerMapper, CarMapper carMapper, CarService carService, CustomerService customerService) {
         this.reservationMapper = reservationMapper;
         this.reservationRepository = reservationRepository;
         this.customerMapper = customerMapper;
         this.carMapper = carMapper;
+        this.carService = carService;
+        this.customerService = customerService;
     }
 
-    public ReservationDto createReservation(ReservationDto reservationDto, CustomerDto customerDto, CarDto carDto) {
+    public ReservationDto createReservation(ReservationDto reservationDto) {
+        Long carId = reservationDto.getCarId();
+        CarDto carDto = carService.searchCarById(carId);
+        Long customerId = reservationDto.getCustomerId();
+        CustomerDto customerDto = customerService.searchCustomerById(customerId);
+
         Reservation reservation = reservationMapper.toEntity(reservationDto);
         reservation.setCustomer(customerMapper.toEntity(customerDto));
         reservation.setCar(carMapper.toEntity(carDto));
@@ -57,8 +68,15 @@ public class ReservationService {
     }
 
     public ReservationDto updateReservation(Long id, ReservationDto reservationDto) {
+        Long carId = reservationDto.getCarId();
+        CarDto carDto = carService.searchCarById(carId);
+        Long customerId = reservationDto.getCustomerId();
+        CustomerDto customerDto = customerService.searchCustomerById(customerId);
+
         Reservation reservation = reservationMapper.toEntity(reservationDto);
         reservation.setId(id);
+        reservation.setCustomer(customerMapper.toEntity(customerDto));
+        reservation.setCar(carMapper.toEntity(carDto));
         reservation = reservationRepository.save(reservation);
         log.info("The Reservation with id {} has been successfully modified", reservation.getId());
         return reservationMapper.toDto(reservation);
