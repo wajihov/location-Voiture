@@ -1,5 +1,6 @@
 package fr.gopartner.locationvoiture.domain.customer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.gopartner.locationvoiture.domain.reservation.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,7 @@ public class Customer {
     private String password;
     private String privilege;
 
-    @OneToMany(mappedBy = "customer")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reservation> reservations = new ArrayList<>();
 }

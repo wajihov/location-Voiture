@@ -1,5 +1,6 @@
 package fr.gopartner.locationvoiture.domain.car;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.gopartner.locationvoiture.domain.reservation.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,7 @@ public class Car {
     private String image;
     private int numberOfAvailableCars;
 
-    @OneToMany(mappedBy = "car")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reservation> reservations = new ArrayList<>();
 }
