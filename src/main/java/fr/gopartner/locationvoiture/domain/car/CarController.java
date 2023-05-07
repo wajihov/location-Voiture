@@ -26,7 +26,7 @@ public class CarController implements CarsApiDelegate {
     @Override
     public ResponseEntity<Void> deleteCarById(Long id) {
         carService.deleteCar(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
