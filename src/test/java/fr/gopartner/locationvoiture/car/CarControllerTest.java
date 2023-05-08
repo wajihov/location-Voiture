@@ -1,5 +1,7 @@
 package fr.gopartner.locationvoiture.car;
 
+import fr.gopartner.locationvoiture.core.exception.CarReservationCustomerException;
+import fr.gopartner.locationvoiture.core.rest.Codes;
 import fr.gopartner.locationvoiture.core.utils.JsonUtils;
 import fr.gopartner.locationvoiture.domain.car.CarService;
 import fr.gopartner.locationvoiture.dto.CarDto;
@@ -13,8 +15,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -125,7 +129,6 @@ public class CarControllerTest {
                 .andExpect(content().string(JsonUtils.asJsonString(carDtoList)));
     }
 
-
     @Test
     void GIVEN_carDto_WHEN_updateCar_THEN_should_return_updatedCar() throws Exception {
         // GIVEN
@@ -154,8 +157,40 @@ public class CarControllerTest {
                 .andExpect(jsonPath("$.mark").value("Toyota"))
                 .andExpect(jsonPath("$.reference").value("DEF456"))
                 .andExpect(content().string(JsonUtils.asJsonString(updatedCarDto)));
-
         // THEN
-        Mockito.verify(carService, Mockito.times(1)).updateCar(Mockito.anyLong(), Mockito.any());
+        verify(carService, times(1)).updateCar(Mockito.anyLong(), Mockito.any());
     }
+
+    @Test
+    void GIVEN_NonExistingCarId_WHEN_getCarById_THEN_ReturnNotFound() throws Exception {
+        // GIVEN
+        Long nonExistingCarId = 999L;
+        CarDto carDto = new CarDto();
+        carDto.setId(nonExistingCarId);
+        carDto.setColor("Red");
+        carDto.setMark("Peugeot");
+        carDto.setReference("KT-YH25");
+
+        Mockito.when(carService.searchCarById(Mockito.anyLong())).thenThrow(new CarReservationCustomerException(Codes.ERR_CAR_NOT_FOUND));
+        // WHEN
+        mockMvc.perform(get("/cars/{id}", nonExistingCarId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonUtils.asJsonString(carDto)))
+                // THEN
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void GIVEN_noCars_WHEN_getAllCars_THEN_returnEmptyList() throws Exception {
+        // GIVEN
+        Mockito.when(carService.getAllCars()).thenReturn(Collections.emptyList());
+        // WHEN
+        mockMvc.perform(get("/cars")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+        // THEN
+        Mockito.verify(carService, Mockito.times(1)).getAllCars();
+    }
+
 }

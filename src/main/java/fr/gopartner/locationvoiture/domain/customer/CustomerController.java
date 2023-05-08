@@ -26,7 +26,7 @@ public class CustomerController implements CustomersApiDelegate {
     @Override
     public ResponseEntity<Void> deleteCustomerById(Long id) {
         customerService.deleteCustomer(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
