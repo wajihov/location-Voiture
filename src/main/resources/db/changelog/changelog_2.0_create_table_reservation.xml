@@ -11,10 +11,8 @@
             </column>
             <column name="careAndSupport" type="varchar(100)"/>
             <column name="discount" type="varchar(100)"/>
-            <column name="intakeOf" type="date"/>
-            <column name="socketTo" type="date"/>
-            <column name="restitutionOf" type="date"/>
-            <column name="restitutionTo" type="date"/>
+            <column name="startDate" type="date"/>
+            <column name="endDate" type="date"/>
             <column name="status" type="varchar(100)"/>
             <column name="dateReservation" type="date"/>
 

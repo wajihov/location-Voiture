@@ -22,10 +22,8 @@ public class Reservation {
     private Long id;
     private String careAndSupport;
     private String discount;
-    private LocalDate intakeOf;
-    private LocalDate socketTo;
-    private LocalDate restitutionOf;
-    private LocalDate restitutionTo;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String status;
     private LocalDate dateReservation;
 

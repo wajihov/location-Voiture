@@ -463,22 +463,6 @@ components:
         discount:
           description: ''
           type: string
-        intakeOf:
-          format: date
-          description: ''
-          type: string
-        socketTo:
-          format: date
-          description: ''
-          type: string
-        restitutionOf:
-          format: date
-          description: ''
-          type: string
-        restitutionTo:
-          format: date
-          description: ''
-          type: string
         status:
           description: ''
           type: string
@@ -494,3 +478,11 @@ components:
           format: int64
           description: ''
           type: integer
+        startDate:
+          format: date
+          description: ''
+          type: string
+        endDate:
+          format: date
+          description: ''
+          type: string
