@@ -397,7 +397,7 @@ components:
           type: integer
         gearbox:
           description: ''
-          type: integer
+          type: string
         price:
           format: int64
           description: ''

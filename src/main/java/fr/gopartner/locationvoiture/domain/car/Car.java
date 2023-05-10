@@ -26,7 +26,7 @@ public class Car {
     private int numberOfDoors;
     private int numberOfPlace;
     private int numberOfHorses;
-    private int gearbox;
+    private String gearbox;
     private Long price;
     private String color;
     private String image;
