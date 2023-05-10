@@ -102,7 +102,7 @@ public class CarMapperTest {
     }
 
     @Test
-    void GIVEN_Cars_WHEN_CarDtoList_THEN_ReturnListOfCarDto() {
+    void GIVEN_Cars_WHEN_CarDtoList_THEN_Return_ListOfCarDto() {
         // GIVEN
         Car firstCar = new Car();
         firstCar.setId(1L);
@@ -223,6 +223,5 @@ public class CarMapperTest {
         });
         assertEquals("CARS NOT FOUND", e.getMessage());
     }
-
 
 }
