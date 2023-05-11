@@ -31,7 +31,7 @@ public class CustomerService {
 
     private Customer rechercheCustomerById(Long id) {
         return customerRepository.findById(id).orElseThrow(() ->
-                new CarReservationCustomerException(Codes.ERR_CAR_NOT_FOUND));
+                new CarReservationCustomerException(Codes.ERR_CUSTOMER_NOT_FOUND));
     }
 
     public CustomerDto searchCustomerById(Long id) {

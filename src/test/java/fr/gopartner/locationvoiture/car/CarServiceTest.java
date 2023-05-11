@@ -85,8 +85,9 @@ public class CarServiceTest {
     @Test
     void GIVEN_carId_WHEN_deleteCarById_THEN_should_delete_from_database() {
         //GIVEN
+        Long carId = 1L;
         Car car = new Car();
-        car.setId(1L);
+        car.setId(carId);
         car.setMark("hyundai i10");
         car.setReference("ABC123");
         car.setNumberOfDoors(4);
@@ -100,7 +101,6 @@ public class CarServiceTest {
 
         Mockito.when(carRepository.findById(Mockito.anyLong())).thenReturn(java.util.Optional.of(car));
         //WHEN
-        Long carId = 1L;
         carService.deleteCar(carId);
         //THEN
         Mockito.verify(carRepository).delete(carArgumentCaptor.capture());
@@ -116,7 +116,6 @@ public class CarServiceTest {
         assertEquals(carDeleted.getColor(), car.getColor());
         assertEquals(carDeleted.getImage(), car.getImage());
         assertEquals(carDeleted.getNumberOfAvailableCars(), car.getNumberOfAvailableCars());
-
     }
 
 
