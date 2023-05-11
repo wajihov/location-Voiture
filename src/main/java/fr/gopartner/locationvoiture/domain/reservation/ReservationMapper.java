@@ -50,4 +50,11 @@ public class ReservationMapper {
         }
         return reservations.stream().map(this::toDto).collect(Collectors.toList());
     }
+
+    public List<Reservation> reservationList(List<ReservationDto> reservationDtoList) {
+        if (CollectionUtils.isNullOrEmpty(reservationDtoList)) {
+            throw new CarReservationCustomerException(Codes.ERR_RESERVATIONS_NOT_FOUND);
+        }
+        return reservationDtoList.stream().map(this::toEntity).collect(Collectors.toList());
+    }
 }

@@ -3,6 +3,7 @@ package fr.gopartner.locationvoiture.domain.customer;
 import fr.gopartner.locationvoiture.core.exception.CarReservationCustomerException;
 import fr.gopartner.locationvoiture.core.rest.Codes;
 import fr.gopartner.locationvoiture.core.utils.CollectionUtils;
+import fr.gopartner.locationvoiture.domain.reservation.Reservation;
 import fr.gopartner.locationvoiture.domain.reservation.ReservationMapper;
 import fr.gopartner.locationvoiture.dto.CustomerDto;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,7 @@ public class CustomerMapper {
                 .email(customerDto.getEmail())
                 .password(customerDto.getPassword())
                 .privilege(customerDto.getPrivilege())
+                .reservations(reservationMapper.reservationList(customerDto.getReservations()))
                 .build();
     }
 

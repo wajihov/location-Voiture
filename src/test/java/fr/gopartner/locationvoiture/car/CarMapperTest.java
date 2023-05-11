@@ -3,6 +3,7 @@ package fr.gopartner.locationvoiture.car;
 import fr.gopartner.locationvoiture.core.exception.CarReservationCustomerException;
 import fr.gopartner.locationvoiture.domain.car.Car;
 import fr.gopartner.locationvoiture.domain.car.CarMapper;
+import fr.gopartner.locationvoiture.domain.customer.Customer;
 import fr.gopartner.locationvoiture.domain.reservation.Reservation;
 import fr.gopartner.locationvoiture.domain.reservation.ReservationMapper;
 import fr.gopartner.locationvoiture.dto.CarDto;
@@ -42,6 +43,38 @@ public class CarMapperTest {
         car.setColor("White");
         car.setImage("car_image.jpg");
         car.setNumberOfAvailableCars(3);
+        List<Reservation> reservations = new ArrayList<>();
+        Reservation reservation1 = new Reservation();
+        reservation1.setId(1L);
+        reservation1.setCareAndSupport("Care 1");
+        reservation1.setDiscount("Discount 1");
+        reservation1.setStartDate(LocalDate.of(2023, 5, 1));
+        reservation1.setEndDate(LocalDate.of(2023, 5, 5));
+        reservation1.setStatus("Status 1");
+        reservation1.setDateReservation(LocalDate.now());
+
+        reservation1.setCar(car);
+        Customer customer1 = new Customer();
+        customer1.setId(1L);
+        reservation1.setCustomer(customer1);
+        reservations.add(reservation1);
+
+        Reservation reservation2 = new Reservation();
+        reservation2.setId(2L);
+        reservation2.setCareAndSupport("Care 2");
+        reservation2.setDiscount("Discount 2");
+        reservation2.setStartDate(LocalDate.of(2023, 6, 1));
+        reservation2.setEndDate(LocalDate.of(2023, 6, 5));
+        reservation2.setStatus("Status 2");
+        reservation2.setDateReservation(LocalDate.now());
+        Car car2 = new Car();
+        car2.setId(2L);
+        reservation2.setCar(car2);
+        Customer customer2 = new Customer();
+        customer2.setId(2L);
+        reservation2.setCustomer(customer2);
+        reservations.add(reservation2);
+        car.setReservations(reservations);
         // WHEN
         CarDto carDto = carMapper.toDto(car);
         // THEN
@@ -56,6 +89,7 @@ public class CarMapperTest {
         assertEquals(carDto.getColor(), car.getColor());
         assertEquals(carDto.getImage(), car.getImage());
         assertEquals(carDto.getNumberOfAvailableCars(), car.getNumberOfAvailableCars());
+        assertEquals(2, car.getReservations().size());
     }
 
     @Test

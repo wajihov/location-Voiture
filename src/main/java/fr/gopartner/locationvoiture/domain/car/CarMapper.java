@@ -35,6 +35,7 @@ public class CarMapper {
                 .color(carDto.getColor())
                 .image(carDto.getImage())
                 .numberOfAvailableCars(carDto.getNumberOfAvailableCars())
+                .reservations(reservationMapper.reservationList(carDto.getReservations()))
                 .build();
     }
 
